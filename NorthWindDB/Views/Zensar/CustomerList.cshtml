@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = null;
+}
+<div ng-controller="customerListCtrl">
+    <button ng-click="GetList();">Get Data</button>
+    <table>
+        <thead></thead>
+        <tbody>
+            <tr ng-repeat="row in List">
+                <td>{{ row.CompanyName }}</td>
+                <td>{{ row.CompanyName }}</td>
+                <td>{{ row.ContactName }}</td>
+                <td>{{ row.CompanyName }}</td>
+                <td>{{ row.CompanyName }}</td>
+                <td>{{ row.City }}</td>
+                <td>{{ row.Phone }}</td>
+
+
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,173 @@
+﻿@model Repositories.Customer
+@using ChameleonForms
+
+@{
+    ViewBag.Title = "Angular";
+    Layout = "~/Views/Shared/_MyLayoutPage.cshtml";
+}
+@section HeaderForCss{
+    @*<link href="css/bootstrap.min.css" rel="stylesheet">*@
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    @*<link href="css/sb-admin.css" rel="stylesheet">*@
+    <link href="~/Content/sb-admin.css" rel="stylesheet" />
+    <!-- Morris Charts CSS -->
+    @*<link href="css/plugins/morris.css" rel="stylesheet">*@
+
+    <!-- Custom Fonts -->
+    @*<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">*@
+
+    <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+}
+
+
+@section HeaderForJs{
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular-route.js"></script>
+    <script src="~/Scripts/AngularApp/Controllers/Customer.ctrl.js"></script>
+
+}
+<div ng-app="customer">
+    <div ng-controller="customerctrl">
+        @*<input type="button" ng-click="fetchCustomers()" value="get Customers" />*@
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="alert alert-info alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features!
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Panel title</h3>
+                            </div> <div class="panel-body">
+
+                                <form class="form-inline">
+                                    <div class="row" style="height:50px;">
+                                        <div class="form-group col-md-3">
+                                            <label for="email">CompanyName</label>
+                                            <input  ng-model="customerQuery.CompanyName" class="form-control" id="email">
+                                            @*<input  ng-model="customerQuery.CompanyName" class="form-control" id="email">*@
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label for="pwd">ContactName</label>
+                                            <input type="text" class="form-control" ng-model="customerQuery.ContactName" id="pwd1">
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <label for="pwd">ContactTitle</label>
+                                            <input type="text" class="form-control" ng-model="customerQuery.ContactTitle" id="pwd2">
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="row" style="height:50px;">
+                                        <div class="form-group col-md-3">
+                                            <label for="pwd">Country</label>
+                                            @*<input type="text" class="form-control" ng-model="customerQuery.Country" id="pwd4">*@
+
+                                            <select name="mySelect" id="mySelect" class="form-control"
+                                                    ng-options="option for option in Coutries track by option"
+                                                    ng-model="customerQuery.Country" ng-change="OnCountrySelection()">
+                                                <option 
+                                                        value="">
+                                                    select Country
+                                                </option>
+
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <label for="pwd">City</label>
+                                            @*<input  type="text" class="form-control" ng-model="customerQuery.City" id="pwd3"/>*@
+                                            <select name="mySelectCity" id="mySelectCity" class="form-control"
+                                                    ng-options="option for option in Cities track by option"
+                                                    ng-model="customerQuery.City"  ng-disabled="Cities.length === 0">
+                                                <option value="">
+                                                    select City
+                                                </option>
+                                            </select>
+
+</div>
+                                        <br />
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-default form-control" ng-click="fetchCustomers()">Submit</button>
+
+                                        </div>
+                                      
+</div>
+                                    <br />
+
+
+
+                                    <br /><br />
+                                    @*<div class="row">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-default form-control" ng-click="fetchCustomers()">Submit</button>
+
+                                        </div>
+
+                                    </div>*@
+                                   
+                                </form>
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-primary ">
+                                        <!-- Default panel contents -->
+                                        <div class="panel-heading">
+                                            <h2 class="panel-title">
+                                                Accounts and transactions report
+                                            </h2>
+                                        </div>
+                                        <div class="panel-body ">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>CompanyName</th>
+                                                        <th>ContactName</th>
+                                                        <th>ContactTitle</th>
+                                                        <th>City</th>
+                                                        <th>Country</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody ng-repeat="customer in customers">
+
+                                                    <tr>
+                                                        <td>{{customer.CompanyName}}</td>
+                                                        <td>{{customer.ContactName}}</td>
+                                                        <td>{{customer.ContactTitle}}</td>
+                                                        <td>{{customer.City}}</td>
+                                                        <td>{{customer.Country}}</td>
+                                                    </tr>
+                                                 
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="grid1" ui-grid="{ data: myData }" class="grid"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

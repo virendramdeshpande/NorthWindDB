@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Zensar</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular-route.js"></script>
+    <script src="~/Scripts/Zensar/Modules/Admin.js"></script>
+    <script src="~/Scripts/Zensar/Modules/Services/customerService.js"></script>
+    <script src="~/Scripts/Zensar/Modules/Controllers/newCustomerCtrl.js"></script>
+    <script src="~/Scripts/Zensar/Modules/Controllers/editCustomerCtrl.js"></script>
+    <script src="~/Scripts/Zensar/Modules/Controllers/customerListCtrl.js"></script>
+    <script src="~/Scripts/Zensar/Modules/Controllers/customerDetailsCtrl.js"></script>
+</head>
+<body>
+    <div ng-app="admin">
+        <a href="#/Customer/List">List</a>
+        <a href="#/customer/details">details</a>
+        <ng-view></ng-view> 
+    </div>
+</body>
+</html>
